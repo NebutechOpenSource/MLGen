@@ -32,8 +32,8 @@ class code_generate:
             'LSTM': self.findLSTM,
             'metrix':self.metrix,
             'compile':self.model_complie_fit,
-            'checkpoint':self.model_checkpoint,
-            'save_model': self.savemodel,
+            'checkpoint':self.find_model_checkpoint,
+            'save_model': self.findsavemodel,
         }   
 
 
@@ -238,6 +238,25 @@ class code_generate:
             'keras': self.genLSTM_keras
         }
         LSTM_dict[self.dictS['backend']]()
+
+
+    def findsavemodel(self):
+        save_dict={
+            'tensorflow 2.0':self.savemodel_tensorflow2,
+            'keras': self.savemodel_keras
+        }
+
+
+        save_dict[self.dictS['backend']]()
+
+    def find_model_checkpoint(self):
+        save_dict={
+            'tensorflow 2.0':self.model_checkpoint_tensoflow2,
+            'keras': self.model_checkpoint_keras
+        }
+
+
+        save_dict[self.dictS['backend']]()
 
 
     def genCNN_tensorflow2(self):
@@ -454,7 +473,7 @@ class code_generate:
         
         self.compilecode += f"\nmodel.fit(x_train, y_train, epochs={self.dictS['compile']['epochs']}, batch_size={batch_size}, verbose={verbose})"
 
-    def model_checkpoint(self):
+    def model_checkpoint_keras(self):
         self.imports += "from keras.callbacks import ModelCheckpoint\n"
         filepath = "weights-improvement-{epoch:02d}-{loss:.4f}-bigger.hdf5"
 
@@ -465,11 +484,34 @@ class code_generate:
         mode = 'min' if 'save_best_only' not in self.dictS['compile'] else self.dictS['compile']['mode']
         self.checkpointcode += f"\nfilepath = \'{filepath}\'"
         self.checkpointcode += f"\ncheckpoint = ModelCheckpoint(filepath,monitor=\'{monitor}\',verbose={verbose},save_best_only={save_best_only},mode=\'{mode}\')\n"
+    
+    def model_checkpoint_tensoflow2(self):
+        self.imports += "from tensorflow.keras.callbacks import ModelCheckpoint\n"
+        filepath = "weights-improvement-{epoch:02d}-{loss:.4f}-bigger.hdf5"
 
-    def savemodel(self):
+        verbose = 0 if 'verbose' not in self.dictS['compile'] else self.dictS['compile']['verbose']
+
+        monitor = 'loss' if 'monitor' not in self.dictS['compile'] else self.dictS['compile']['monitor']
+        save_best_only = True if 'save_best_only' not in self.dictS['compile'] else self.dictS['compile']['save_best_only']
+        mode = 'min' if 'save_best_only' not in self.dictS['compile'] else self.dictS['compile']['mode']
+        self.checkpointcode += f"\nfilepath = \'{filepath}\'"
+        self.checkpointcode += f"\ncheckpoint = ModelCheckpoint(filepath,monitor=\'{monitor}\',verbose={verbose},save_best_only={save_best_only},mode=\'{mode}\')\n"
+
+    def savemodel_keras(self):
         print("saving model")
         self.reqs += "h5py\n"
-        self.imports += "from keras.models import model_from_json, load_model\n"
+        #self.imports += "from keras import models\n"
+        self.savecode += "\n#saving the model\n"
+        
+        if 'weights' in self.dictS['save_model']['save']:
+            self.savecode += f"model.save_weights(\'{self.dictS['save_model']['file']}.h5\')"
+        if 'model' in self.dictS['save_model']['save']:
+            self.savecode += f"model.save(\'{self.dictS['save_model']['file']}.h5\')"
+    
+    def savemodel_tensorflow2(self):
+        print("saving model")
+        self.reqs += "h5py\n"
+        self.imports += "from tensorflow.keras import models\n"
         self.savecode += "\n#saving the model\n"
         
         if 'weights' in self.dictS['save_model']['save']:

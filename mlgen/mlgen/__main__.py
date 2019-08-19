@@ -132,7 +132,7 @@ def genfiles(args):
 
 
         if args.gen == 'ann':
-            if args.backend == 'tensorflow':
+            if args.backend == 'tensorflow2.0':
                 print("generating tf files")
                 path = '/mlm_templates/ann_tensorflow2.mlm'
                 filepath = pkg_resources.resource_filename(__name__, path)
