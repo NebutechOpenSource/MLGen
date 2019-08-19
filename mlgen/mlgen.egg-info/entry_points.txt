@@ -1,0 +1,3 @@
+[console_scripts]
+mlgen = mlgen.__main__:main
+

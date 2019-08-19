@@ -1,0 +1,18 @@
+regr = linear_model.LinearRegression()
+
+# Train the model using the training sets
+regr.fit(x_train, y_train)
+
+# Make predictions using the testing set
+y_pred = regr.predict(x_test)
+
+# The coefficients
+print('Coefficients: \n', regr.coef_)
+
+# Plot outputs
+plt.scatter(x_test, y_test,  color='black')
+plt.plot(x_test, y_pred, color='blue', linewidth=3)
+plt.xticks(())
+plt.yticks(())
+
+plt.show()

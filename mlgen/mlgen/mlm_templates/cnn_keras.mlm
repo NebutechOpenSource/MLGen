@@ -1,0 +1,60 @@
+file: cnn_keras
+version: 3.7
+type: python
+backend: keras
+gpu: true
+data: "<data file location>"
+split: 70
+
+coloumns_feature: 
+    <coloumn name>:
+        type: <datatype>
+
+coloumns_lable: 
+    <coloumn name>:
+        type: <datatype>
+
+reshape: (28, 28, 1)
+
+nill_data: mean  #remove | mean | mode | median
+nill_data_categorical: max #remove | max | min
+
+CNN:
+    layer1:
+        kernal: (3,3)
+        number_neurons: 32
+        input_shape: (28, 28, 1)
+        maxpool: (3,3)
+
+    layer2:
+        kernal: (3,3)
+        number_neurons: 32
+        
+    layer3:
+        kernal: (3,3)
+        number_neurons: 32
+
+Dense:     
+    layer_dense1:
+        number_neurons: 64
+        activation: relu
+    layer_dense2:
+        number_neurons: 10
+        activation: softmax   
+
+compile:
+    epochs: 5
+    optimizer: adam 
+    loss: categorical_crossentropy 
+    metrics:
+        - accuracy
+
+checkpoint:
+    monitor: loss
+    verbose: 1
+    save_best_only: True,
+    mode: min
+
+save_model:
+    file: model
+    save: model

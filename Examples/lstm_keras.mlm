@@ -1,0 +1,67 @@
+file: lstm_keras
+version: 3.7
+type: jupyter | python
+backend: keras
+gpu: true
+data: "<data file location>"
+
+split: 70
+
+coloumns_feature: 
+    <coloumn name>: 
+        type: <datatype>
+
+    <coloumn name>: 
+        type: <datatype>
+
+coloumns_lable: 
+    <coloumn name>: 
+        type: <datatype>
+
+nill_data: mean  #remove | mean | mode | median
+nill_data_categorical: max #remove | max | min
+
+
+LSTM:
+    layer1:
+        number_neurons: 12
+        input_shape: 8
+        return_sequences: True
+        dropout: 
+            dropout: 70
+            noise_shape: 12
+            seed: 12
+    
+    layer2:
+         number_neurons: 12
+         return_sequences: True
+         dropout: 
+            dropout: 70
+            noise_shape: 12
+            seed: 12
+        
+Dense: 
+    layer1:
+        number_neurons: 12
+        activation: softmax
+
+
+compile:
+    epochs: 5
+    batch_size: 10
+    verbose: 0
+    optimizer: adam 
+    loss: binary_crossentropy 
+    metrics:
+        - accuracy
+
+checkpoint:
+    monitor: loss
+    verbose: 1
+    save_best_only: True,
+    mode: min
+
+
+save_model:
+    file: model
+    save: model
