@@ -9,7 +9,7 @@ This tool as of now supports keras and tensorflow2.0(not fully supported)
 To init files  
 `mlgen -i | --init <file name>`   
 To generate a specific template (optional)  
-`mlgen -g | --gen <neural network type> --backend | -be <lib to use>`  
+`mlgen -g | --gen <neural network type> --backend | -be <lib to use> -t jupyter`
 To generate the ml python file  
 `mlgen -r . `
 
