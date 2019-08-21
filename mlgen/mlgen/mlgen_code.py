@@ -86,12 +86,12 @@ class code_generate:
         print("filling import data")
         self.imports +="import pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\n"
         self.reqs += "pandans\nmatplotlib\n"
-        try:
+        setlocation = re.search("(?P<url>https?://[^\s]+)", self.dictS['data']).group("url")
+        if setlocation is not None:
             self.imports += "import request\nimport io\n"
-            setlocation = re.search("(?P<url>https?://[^\s]+)", self.dictS['data']).group("url")
-            self.data += f"s=requests.get({setlocation}).content\nndataFile=pd.read_csv(io.StringIO(s.decode('utf-8')))"
+            self.data += f"s=requests.get({self.dictS['data']}).content\nndataFile=pd.read_csv(io.StringIO(s.decode('utf-8')))"
 
-        except:
+        else:
             self.data += f"\ndataFile = \'{self.dictS['data']}\'\n"
         
 
@@ -123,7 +123,7 @@ class code_generate:
         for i in self.dictS['coloumns_lable']:
             col.append(i)
         self.data +=f"lable = dataFrame[{col}]\n\n"
-        self.data_preprocessing()
+        #self.data_preprocessing()
         self.data += self.split
 
 
