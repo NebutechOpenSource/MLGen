@@ -50,7 +50,7 @@ class code_generate:
     def createfileJupyter(self):
         print("creating jupyter files")
         self.pygen=open(f"{self.dictS['file'].split('.')[0]}.ipynb",'w')
-        self.reqgen=open("requirments.txt",'w')
+        self.reqgen=open("requirements.txt",'w')
         pythonfile = {
             'pythonfile': f"{self.dictS['file'].split('.')[0]}.ipynb"
         }
@@ -87,6 +87,7 @@ class code_generate:
         self.imports +="import pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\n"
         self.reqs += "pandans\nmatplotlib\n"
         setlocation = re.search("(?P<url>https?://[^\s]+)", self.dictS['data']).group("url")
+        
         if setlocation is not None:
             self.imports += "import request\nimport io\n"
             self.data += f"s=requests.get({self.dictS['data']}).content\nndataFile=pd.read_csv(io.StringIO(s.decode('utf-8')))"
