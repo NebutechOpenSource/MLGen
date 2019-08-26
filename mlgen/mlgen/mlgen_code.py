@@ -353,9 +353,9 @@ class code_generate:
         self.coloumns_extract()
         self.data_preprocessing()
         if self.dictS['gpu'] == 'true':
-            self.reqs += "tensorflow-gpu\nkeras"
+            self.reqs += "tensorflow-gpu\nkeras\n"
         else:
-            self.reqs += "tensorflow\nkeras"
+            self.reqs += "keras\n"
         no = 1
         self.mlcode += "\nmodel = models.Sequential()\n\n"
         self.imports += "from keras import models\nfrom keras.layers import Dense, Dropout\n" 
