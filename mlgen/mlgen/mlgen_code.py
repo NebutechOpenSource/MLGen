@@ -66,7 +66,7 @@ class code_generate:
     def createfile(self):
         print("creating python")
         self.pygen=open(f"{self.dictS['file'].split('.')[0]}.py",'w')
-        self.reqgen=open("requirments.txt",'w')
+        self.reqgen=open("requirements.txt",'w')
         pythonfile = {
             'pythonfile': f"{self.dictS['file'].split('.')[0]}.py"
         }
