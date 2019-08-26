@@ -8,7 +8,7 @@ def readme():
 
 setup(
     name="mlgen",
-    version="1.0.4",
+    version="1.0.5",
     description="MLGen is a tool which helps you to generate machine learning code with ease.",
     long_description=readme(),
     long_description_content_type="text/markdown",
