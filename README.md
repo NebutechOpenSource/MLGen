@@ -1,4 +1,7 @@
 # MLGen
+
+[![Join the chat at https://gitter.im/MLGen/community](https://badges.gitter.im/MLGen/community.svg)](https://gitter.im/MLGen/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 MlGen is a tool which helps you to generate machine learning code with ease.
 MLGen uses a ".mlm" file format which is a file with YML like syntax.
 This tool as of now supports keras and tensorflow2.0(not fully supported)
