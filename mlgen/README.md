@@ -1,7 +1,7 @@
 
 # MLGen: Machine learning code generator
 
-[![Join the chat at https://gitter.im/MLGen/community](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/MLGen/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.png?v=103)](https://opensource.org/licenses/mit-license.php)
+[![Join the chat at https://gitter.im/MLGen/community](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/MLGen/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.png?v=103)](https://opensource.org/licenses/mit-license.php)  
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 
 
@@ -119,7 +119,7 @@ __To generate the ml python file__
 **save**: save type. Available options weights and model
 
 ## Eample mlm file
-`mlgen -i anniris`
+`mlgen -i anniris`  
 `mlgen -g ann -be keras -t jupyter`
 
 *make nessesary changes to the mlm file*
